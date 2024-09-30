@@ -15,6 +15,7 @@ let PixBrightness = 0
 pixel.setBrightness(brightness)
 D0 = 0
 let hue = 245
+let PinValue = 0
 forever(function () {
     while (D0 == 0) {
         for (let index = 0; index < 50; index++) {
@@ -25,6 +26,7 @@ forever(function () {
             hue += 0.25
             pixel.setColor(pixel.hsv(hue, 255, 255))
             strip.setAll(light.hsv(hue, 255, 255))
+            pins.A1.analogWrite(0.01 + PinValue)
         }
         pause(2000)
         for (let index = 0; index < 50; index++) {
@@ -36,6 +38,7 @@ forever(function () {
             pixel.setColor(pixel.hsv(hue, 255, 255))
             strip.setAll(light.hsv(hue, 255, 255))
             D2 = 0
+            pins.A1.analogWrite(-0.01 + PinValue)
         }
     }
 })
