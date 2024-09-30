@@ -4,7 +4,6 @@ input.touchD0.onEvent(ButtonEvent.LongClick, function () {
 input.touchD0.onEvent(ButtonEvent.Click, function () {
     D0 = 1
 })
-let D2 = 0
 let D0 = 0
 let brightness = 0
 light.setMode(NeoPixelMode.RGBW)
@@ -26,7 +25,7 @@ forever(function () {
             hue += 0.25
             pixel.setColor(pixel.hsv(hue, 255, 255))
             strip.setAll(light.hsv(hue, 255, 255))
-            pins.A1.analogWrite(0.01 + PinValue)
+            pins.A1.analogWrite(PinValue + 20)
         }
         pause(2000)
         for (let index = 0; index < 50; index++) {
@@ -37,8 +36,7 @@ forever(function () {
             hue += -0.25
             pixel.setColor(pixel.hsv(hue, 255, 255))
             strip.setAll(light.hsv(hue, 255, 255))
-            D2 = 0
-            pins.A1.analogWrite(-0.01 + PinValue)
+            pins.A1.analogWrite(PinValue - 20)
         }
     }
 })
